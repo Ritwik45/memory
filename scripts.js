@@ -12,18 +12,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Define an array of URLs for the images
     const imageUrls = [
-        '/cutie.png',
-        '/egg.png',
-        '/frog.png',
-        '/hitler.png',
-        '/kitty.png',
-        '/kuromi.png',
-        '/omen.png',
-        '/penguin.png',
-        '/roll.png',
-        '/sheep.png',
-        '/simpson.png',
-        '/tux.png'
+        './cutie.png',
+        './egg.png',
+        './frog.png',
+        './hitler.png',
+        './kitty.png',
+        './kuromi.png',
+        './omen.png',
+        './penguin.png',
+        './roll.png',
+        './sheep.png',
+        './simpson.png',
+        './tux.png'
     ];
 
     function shuffle(array) {
