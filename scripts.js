@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let secondCard = null;
     let lockBoard = false;
     let timer;
-    let time = 150; // 2 minutes
+    let time = 120; // 2 minutes
     let streak = 0;
     let highScore = localStorage.getItem('highScore') || 0;
 
