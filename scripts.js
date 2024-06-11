@@ -76,8 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
             gameBoard.appendChild(card);
         });
         startTimer();
-        showMascotMessage(getRandomMessage());
-        mascotElement.style.display = 'block';
+        if (mascotElement) {
+            showMascotMessage(getRandomMessage());
+            mascotElement.style.display = 'block';
+        }
     }
 
     function createCard(index, imageUrl) {
@@ -106,7 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function startTimer() {
         timer = setInterval(() => {
-            time--;
+            if (time > 0) {
+                time--;
+            }
             const minutes = Math.floor(time / 60);
             const seconds = time % 60;
             timerElement.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
@@ -151,10 +155,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const secondImage = secondCard.querySelector('.card-back').style.backgroundImage;
 
         if (firstImage === secondImage) {
+            addTime(4); // Add 4 seconds to the timer for a correct pair
             removeCards();
         } else {
             unflipCards();
         }
+    }
+
+    function addTime(seconds) {
+        time += seconds;
+        const minutes = Math.floor(time / 60);
+        const secs = time % 60;
+        timerElement.innerText = `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
     function removeCards() {
@@ -210,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function gameOver() {
         gameBoard.innerHTML = '';
         showMascotMessage("Uh oh, you lost! Wanna retry?");
+        stopTimer(); // Stop the timer when the game is over
         restartButton.style.display = 'block';
     }
 
