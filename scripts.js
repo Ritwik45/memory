@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
             firstCard = this;
         } else {
             secondCard = this;
+            lockBoard = true; // Lock the board to prevent further clicks
             checkForMatch();
         }
     }
@@ -168,12 +169,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function unflipCards() {
-        lockBoard = true;
         setTimeout(() => {
+            firstCard.querySelector('.card-front').innerText = '';
+            secondCard.querySelector('.card-front').innerText = '';
             firstCard.classList.remove('flipped');
             secondCard.classList.remove('flipped');
             resetBoard();
-            lockBoard = false;
+            lockBoard = false; // Unlock the board after unflipping cards
         }, 1000);
     }
 
@@ -200,7 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showMascotMessage(text) {
-        mascotElement.querySelector('p').innerText = text;
+        if (mascotElement && mascotElement.querySelector('p')) {
+            mascotElement.querySelector('p').innerText = text;
+        }
     }
 
     function gameOver() {
@@ -210,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function resetGame() {
-        time = 150;
+        time = 120;
         streak = 0;
         streakElement.innerText = `Streak: ${streak}`;
         startGame();
